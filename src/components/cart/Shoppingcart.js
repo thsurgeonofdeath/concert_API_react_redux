@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CartStore from "../../redux/CartStore";
 import Shoppingcartitem from "./Shoppingcartitem";
-import * as types from "../../redux/types";
+import * as cartHelper from "../../redux/CartHelper";
+import { useDispatch } from "react-redux";
 
 export default function Shoppingcart() {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [cart, setCart] = useState([]);
@@ -24,7 +26,7 @@ export default function Shoppingcart() {
   };
 
   let handleOrderClick = () => {
-    CartStore.dispatch({ type: types.CLEAR });
+    dispatch(cartHelper.clearCart());
     history.push("/confirm");
   };
 

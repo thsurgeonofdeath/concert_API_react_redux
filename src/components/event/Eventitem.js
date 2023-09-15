@@ -1,8 +1,9 @@
 import React from "react";
-import CartStore from "../../redux/CartStore";
-import * as types from "../../redux/types";
+import { addCart } from "../../redux/CartHelper";
+import { useDispatch } from "react-redux";
 
-function Eventitem({ event }) {
+export default function Eventitem({ event }) {
+  const dispatch = useDispatch();
   return (
     <tr className="align-middle">
       <td>
@@ -16,9 +17,7 @@ function Eventitem({ event }) {
         <button
           type="button"
           className="btn btn-primary btn-primary-themed btn-md font-upper"
-          onClick={() =>
-            CartStore.dispatch({ type: types.ADD, payload: event })
-          }
+          onClick={() => dispatch(addCart(event.id))}
         >
           Add to Cart
         </button>
@@ -26,5 +25,3 @@ function Eventitem({ event }) {
     </tr>
   );
 }
-
-export default Eventitem;

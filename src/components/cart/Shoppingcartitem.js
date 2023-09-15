@@ -1,8 +1,9 @@
 import React from "react";
-import CartStore from "../../redux/CartStore";
-import * as types from "../../redux/types";
+import * as cartHelper from "../../redux/CartHelper";
+import { useDispatch } from "react-redux";
 
 export default function Shoppingcartitem({ event }) {
+  const dispatch = useDispatch();
   return (
     <tr className="align-middle">
       <td>
@@ -19,12 +20,7 @@ export default function Shoppingcartitem({ event }) {
             type="number"
             className="w-auto"
             value={event.quantity}
-            onChange={(e) =>
-              CartStore.dispatch({
-                type: types.UPDATE,
-                payload: { ...event, quantity: parseInt(e.target.value) },
-              })
-            }
+            onChange={(e) => dispatch(cartHelper.updateCart(event.event_id))}
           />
         </div>
       </td>
@@ -32,9 +28,7 @@ export default function Shoppingcartitem({ event }) {
       <td>
         <button
           className="btn btn-link"
-          onClick={() =>
-            CartStore.dispatch({ type: types.DELETE, payload: event })
-          }
+          onClick={() => dispatch(cartHelper.deleteCart(event.id))}
         >
           <span className="bi bi-trash-fill font-large text-dark"></span>
         </button>

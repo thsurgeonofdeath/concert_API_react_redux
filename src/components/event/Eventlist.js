@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Eventitem from "./Eventitem";
-import { events } from "../../data";
 
 export default function Eventlist() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/events")
+      .then((response) => response.json())
+      .then((data) => {
+        setEvents(data);
+      });
+  });
   return (
     <div className="container" id="eventtable">
       <div className="container">
