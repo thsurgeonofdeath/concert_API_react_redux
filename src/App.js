@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./Header";
-import Eventlist from "./Eventlist";
-import Shoppingcart from "./Shoppingcart";
-import Confirmation from "./Confirmation";
+import Header from "./components/Header";
+import Eventlist from "./components/event/Eventlist";
+import Shoppingcart from "./components/cart/Shoppingcart";
+import Confirmation from "./components/Confirmation";
 
 function App() {
   return (
